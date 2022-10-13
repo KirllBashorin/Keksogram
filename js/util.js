@@ -48,4 +48,17 @@ const createUniqueRandomArrayElementGenerator = (array) => {
   };
 };
 
-export { getRandomInteger, createUniqueRandomIntegerGenerator, createUniqueRandomArrayElementGenerator, testStringLength, getRandomArrayElement };
+const isEscKeyDown = (evt) => {
+  if(evt.keyCode === 27) {
+    return true;
+  }
+};
+
+export {
+  getRandomInteger,
+  createUniqueRandomIntegerGenerator,
+  createUniqueRandomArrayElementGenerator,
+  testStringLength,
+  getRandomArrayElement,
+  isEscKeyDown
+};

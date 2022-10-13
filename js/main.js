@@ -1,4 +1,3 @@
-import { renderPicturesPreview } from './previews.js';
+import './gallery.js';
 
-renderPicturesPreview();
 

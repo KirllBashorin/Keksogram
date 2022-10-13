@@ -80,7 +80,7 @@ const AvatarCount = {
   MAX: 6,
 }
 
-let photos = [];
+const photos = [];
 
 const addComment = () => {
   const comments = [];
@@ -114,5 +114,4 @@ const addPhotos = () => {
 };
 
 addPhotos();
-
 export { photos };
