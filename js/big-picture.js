@@ -40,7 +40,7 @@ const renderCommentsList = (comments) => {
 }
 
 const openBigPicture = (photo) => {
-  body.classList.add('.modal-open')
+  body.classList.add('.modal-open');
   bigPicture.querySelector('.social__comment-count').classList.add('hidden'); // Временно
   bigPicture.querySelector('.comments-loader').classList.add('hidden'); // Временно
   bigPicture.querySelector('.big-picture__img > img').src = photo.url;
@@ -53,4 +53,4 @@ const openBigPicture = (photo) => {
   document.addEventListener('keydown', onBigPictureEscapeKeyDown);
 };
 
-export { openBigPicture }
+export { openBigPicture };
