@@ -1,3 +1,8 @@
+const Keys = {
+  ESC: 'Esc',
+  ESCAPE: 'Escape',
+};
+
 const getRandomInteger = (min, max) => {
   if (min < 0 || max < 0) {
     return -1;
@@ -24,7 +29,7 @@ const createUniqueRandomIntegerGenerator = (min, max) => {
   };
 };
 
-const testStringLength = (text, maxLength) => {
+const checkStringLength = (text, maxLength) => {
   return (text.length <= maxLength);
 };
 
@@ -34,7 +39,6 @@ const getRandomArrayElement = (array) => {
 
 const createUniqueRandomArrayElementGenerator = (array) => {
   const previousElements = [];
-
   return () => {
     let currentElement = getRandomArrayElement(array);
     if (previousElements.length >= (array.length)) {
@@ -49,7 +53,7 @@ const createUniqueRandomArrayElementGenerator = (array) => {
 };
 
 const isEscKeyDown = (evt) => {
-  if(evt.keyCode === 27) {
+  if (evt.key === Keys.ESCAPE || evt.key === Keys.ESC) {
     return true;
   }
 };
@@ -58,7 +62,7 @@ export {
   getRandomInteger,
   createUniqueRandomIntegerGenerator,
   createUniqueRandomArrayElementGenerator,
-  testStringLength,
+  checkStringLength,
   getRandomArrayElement,
   isEscKeyDown
 };

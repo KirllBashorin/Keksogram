@@ -20,9 +20,11 @@ const renderPicturesPreview = () => {
   });
   picturesList.appendChild(picturesListFragment);
   picturesList.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    const clickedPreview = photos.find(element => element.id === Number(evt.target.id));
-    openBigPicture(clickedPreview);
+    if (evt.target.classList.contains('picture__img')) {
+      evt.preventDefault();
+      const clickedPreview = photos.find(element => element.id === Number(evt.target.id));
+      openBigPicture(clickedPreview);
+    }
   })
 };
 
