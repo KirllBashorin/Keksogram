@@ -33,6 +33,10 @@ const checkStringLength = (text, maxLength) => {
   return (text.length <= maxLength);
 };
 
+const checkStringSymbols = (string) => {
+  return /^[a-zA-Z0-9]+$/.test(string);
+}
+
 const getRandomArrayElement = (array) => {
   return array[getRandomInteger(0, array.length - 1)];
 };
@@ -62,6 +66,7 @@ export {
   getRandomInteger,
   createUniqueRandomIntegerGenerator,
   createUniqueRandomArrayElementGenerator,
+  checkStringSymbols,
   checkStringLength,
   getRandomArrayElement,
   isEscKeyDown

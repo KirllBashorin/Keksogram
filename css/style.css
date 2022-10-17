@@ -696,6 +696,11 @@ main {
   border-radius: 5px;
 }
 
+.input-invalid {
+  outline: 5px solid rgb(238, 104, 56);
+  outline-offset: -5px;
+}
+
 .text__description {
   width: 450px;
   height: 100px;
