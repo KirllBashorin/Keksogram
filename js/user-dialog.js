@@ -55,9 +55,15 @@ const closeUploadOverlay = () => {
 };
 
 const onUploadOverlayEscapeDown = (evt) => {
-  if (isEscKeyDown(evt)) {
-    evt.preventDefault();
-    closeUploadOverlay();
+  if (
+    !(evt.target.classList.contains('text__hashtags')
+    ||
+    evt.target.classList.contains('text__description'))
+  ) {
+    if (isEscKeyDown(evt)) {
+      evt.preventDefault();
+      closeUploadOverlay();
+    }
   }
 };
 
