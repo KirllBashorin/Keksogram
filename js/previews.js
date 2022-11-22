@@ -1,4 +1,3 @@
-import { photos } from './data.js';
 import { openBigPicture } from './big-picture.js'
 
 const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -13,16 +12,16 @@ const createPicturePreview = (photo) => {
   return photoPreview;
 };
 
-const renderPicturesPreview = () => {
+const renderPicturesPreview = (data) => {
   const picturesListFragment = document.createDocumentFragment();
-  photos.forEach((photo) => {
+  data.forEach((photo) => {
     picturesListFragment.appendChild(createPicturePreview(photo));
   });
   picturesList.appendChild(picturesListFragment);
   picturesList.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('picture__img')) {
       evt.preventDefault();
-      const clickedPreview = photos.find(element => element.id === Number(evt.target.id));
+      const clickedPreview = data.find(element => element.id === Number(evt.target.id));
       openBigPicture(clickedPreview);
     }
   })

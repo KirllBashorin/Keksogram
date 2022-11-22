@@ -6,6 +6,7 @@ const Scale = {
   STEP: 25,
 };
 
+const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadIinput = document.querySelector('.img-upload__input');
 const uploadModal = document.querySelector('.img-upload__overlay');
 const scaleValue = uploadModal.querySelector('.scale__control--value');
@@ -15,6 +16,7 @@ const effectValueInput = uploadModal.querySelector('.effect-level__value');
 let scaleValueInt = Number(scaleValue.value.substring(0, scaleValue.value.length - 1));
 
 const resetUploadForm = () => {
+  imageUploadForm.reset();
   uploadIinput.value = '';
   scaleValue.value = '100%';
   scaleValueInt = 100;
