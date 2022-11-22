@@ -1,28 +1,20 @@
+/* global _:readonly */
+
 const Keys = {
   ESC: 'Esc',
   ESCAPE: 'Escape',
-};
-
-const getRandomInteger = (min, max) => {
-  if (min < 0 || max < 0) {
-    return -1;
-  }
-  if (max < min) {
-    [min, max] = [max, min];
-  }
-  return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 const createUniqueRandomIntegerGenerator = (min, max) => {
   const previousValues = [];
 
   return () => {
-    let currentValue = getRandomInteger(min, max);
+    let currentValue = _.random(min, max);
     if (previousValues.length >= (max - min + 1)) {
       throw new Error('Перебраны все числа из диапазона от ' + min + ' до ' + max);
     }
     while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
+      currentValue = _.random(min, max);
     }
     previousValues.push(currentValue);
     return currentValue;
@@ -35,10 +27,21 @@ const checkStringLength = (text, maxLength) => {
 
 const checkStringSymbols = (string) => {
   return /^[a-zA-Z0-9]+$/.test(string);
-}
+};
 
 const getRandomArrayElement = (array) => {
-  return array[getRandomInteger(0, array.length - 1)];
+  return array[_.random(0, array.length - 1)];
+};
+
+const shuffleArray = (array) => {
+  const newArray = array.slice();
+  let currentIndex = newArray.length - 1;
+  while (currentIndex != 0) {
+    const randomIndex = _.random(0, currentIndex);
+    [newArray[currentIndex], newArray[randomIndex]] = [newArray[randomIndex], newArray[currentIndex]];
+    currentIndex--;
+  }
+  return newArray;
 };
 
 const createUniqueRandomArrayElementGenerator = (array) => {
@@ -63,11 +66,11 @@ const isEscKeyDown = (evt) => {
 };
 
 export {
-  getRandomInteger,
   createUniqueRandomIntegerGenerator,
   createUniqueRandomArrayElementGenerator,
   checkStringSymbols,
   checkStringLength,
   getRandomArrayElement,
-  isEscKeyDown
+  isEscKeyDown,
+  shuffleArray
 };
