@@ -12,10 +12,6 @@ const imageFilters = document.querySelector('.img-filters');
 const imageFiltersForm = imageFilters.querySelector('.img-filters__form');
 let photos = [];
 
-const removeActiveClass = () => {
-  imageFiltersForm.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
-}
-
 const clearGallery = () => {
   const pictures = document.querySelectorAll('.picture');
   if (pictures) {
@@ -23,7 +19,7 @@ const clearGallery = () => {
       element.remove();
     });
   }
-}
+};
 
 const filters = {
   'filter-default': () => {
@@ -40,7 +36,7 @@ const filters = {
 };
 
 const onFilterClick = (evt) => {
-  removeActiveClass();
+  imageFiltersForm.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
   evt.target.classList.add('img-filters__button--active');
   clearGallery();
   filters[evt.target.id]();
@@ -55,7 +51,7 @@ const onSuccess = (data) => {
   photos = data.slice();
   renderPicturesPreview(photos.slice(0, DEFAULT_PHOTO_COUNT));
   showFilters();
-}
+};
 
 request (
   onSuccess,

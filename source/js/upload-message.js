@@ -6,7 +6,7 @@ const body = document.querySelector('body');
 const closeUploadMessage = (block) => {
   block.remove();
   document.removeEventListener('keydown', onUploadMessageEscapeDown)
-}
+};
 
 const onUploadMessageEscapeDown = (block) => {
   return (evt) => {
@@ -14,7 +14,7 @@ const onUploadMessageEscapeDown = (block) => {
       closeUploadMessage(block);
     }
   }
-}
+};
 
 const onDocumentClickClose = (block) => {
   return (evt) => {
@@ -49,4 +49,4 @@ const showUploadMessage = (templateNode) => {
   }
 };
 
-export { showUploadMessage }
+export { showUploadMessage };

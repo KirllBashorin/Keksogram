@@ -4,7 +4,6 @@ const COMMENTS_COUNT = 5;
 const bigPicture = document.querySelector('.big-picture');
 const commentsCount = bigPicture.querySelector('.social__comment-count');
 const bigPictureCloseButton = bigPicture.querySelector('.big-picture__cancel');
-const body = document.querySelector('body');
 const commentsList = bigPicture.querySelector('.social__comments');
 const commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
 const commentLoader = bigPicture.querySelector('.social__comments-loader');
@@ -22,7 +21,7 @@ const checkAndHideCommentsLoader = () => {
   if (hiddenComments.length === 0) {
     commentLoader.classList.add('hidden');
   }
-}
+};
 
 const renderCommentsList = (comments) => {
   const newCommentsListFragment = document.createDocumentFragment();
@@ -35,7 +34,7 @@ const renderCommentsList = (comments) => {
   })
   commentsList.appendChild(newCommentsListFragment);
   checkAndHideCommentsLoader();
-}
+};
 
 const showCommentsCount = (commentsLength, currentCommentsNumber = COMMENTS_COUNT) => {
   let commentsNumber = COMMENTS_COUNT;
@@ -62,7 +61,7 @@ const shwoMoreComments = () => {
 };
 
 const openBigPicture = (photo) => {
-  body.classList.add('modal-open');
+  document.querySelector('body').classList.add('modal-open');
   bigPicture.querySelector('.big-picture__img > img').src = photo.url;
   bigPicture.querySelector('.likes-count').textContent = photo.likes;
   bigPicture.querySelector('.comments-count').textContent = photo.comments.length;

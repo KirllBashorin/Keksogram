@@ -18,6 +18,6 @@ const showUploadedFile = () => {
     });
     reader.readAsDataURL(file);
   }
-}
+};
 
 export { showUploadedFile };

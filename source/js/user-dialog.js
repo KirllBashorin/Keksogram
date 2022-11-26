@@ -101,11 +101,8 @@ const showAlert = (message) => {
   alertContainer.style.fontSize = '20px';
   alertContainer.style.textAlign = 'center';
   alertContainer.style.backgroundColor = 'black';
-
   alertContainer.textContent = message;
-
-  document.body.append(alertContainer);
-
+  body.append(alertContainer);
   setTimeout(() => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
