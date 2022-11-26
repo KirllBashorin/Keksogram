@@ -1,4 +1,4 @@
-/* global _:readonly */
+import _ from 'lodash';
 
 const Keys = {
   ESC: 'Esc',

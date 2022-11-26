@@ -1,4 +1,5 @@
-import { effects } from './effects.js';
+import noUiSlider from 'nouislider';
+import 'nouislider/dist/nouislider.css';
 
 const Scale = {
   MIN: 25,
@@ -6,12 +7,26 @@ const Scale = {
   STEP: 25,
 };
 
+const Slider = {
+  MIN: 0,
+  MAX: 100,
+}
+
+const effects = {
+  'effect-chrome': {filter: 'grayscale', min: 0, max: 1, step: 0.1, unit: ''},
+  'effect-sepia': {filter: 'sepia', min: 0, max: 1, step: 0.1, unit: ''},
+  'effect-marvin': {filter: 'invert', min: 0, max: 100, step: 1, unit: '%'},
+  'effect-phobos': {filter: 'blur', min: 0, max: 3, step: 0.1, unit: 'px'},
+  'effect-heat': {filter: 'brightness', min: 1, max: 3, step: 0.1, unit: ''},
+};
+
 const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadIinput = document.querySelector('.img-upload__input');
 const uploadModal = document.querySelector('.img-upload__overlay');
 const scaleValue = uploadModal.querySelector('.scale__control--value');
 const imageUploadPreview = uploadModal.querySelector('.img-upload__preview').querySelector('img');
-const effectSlider = uploadModal.querySelector('.img-upload__effect-level');
+const effectLevel = uploadModal.querySelector('.img-upload__effect-level');
+const effectSlider = uploadModal.querySelector('.effect-level__slider');
 const effectValueInput = uploadModal.querySelector('.effect-level__value');
 let scaleValueInt = Number(scaleValue.value.substring(0, scaleValue.value.length - 1));
 
@@ -35,12 +50,12 @@ const scaling = (evt) => {
   imageUploadPreview.style.transform = `scale(${scaleValueInt / 100})`;
 };
 
-window.noUiSlider.create(effectSlider, {
+noUiSlider.create(effectSlider, {
   range: {
-    min: 0,
-    max: 100,
+    min: Slider.MIN,
+    max: Slider.MAX,
   },
-  start: 199,
+  start: Slider.MAX,
   connect: 'lower',
   format: {
     to: function (value) {
@@ -56,7 +71,7 @@ window.noUiSlider.create(effectSlider, {
 });
 
 const switchEffect = (target) => {
-  (target.id === 'effect-none') ? effectSlider.classList.add('hidden') : effectSlider.classList.remove('hidden');
+  (target.id === 'effect-none') ? effectLevel.classList.add('hidden') : effectLevel.classList.remove('hidden');
   imageUploadPreview.classList.remove(imageUploadPreview.classList.item(0));
   imageUploadPreview.classList.add(`effects__preview--${target.id.substring(6)}`);
 };
@@ -74,8 +89,8 @@ const updateSliderOptions = (effect) => {
 
 const setFilterEffectToStyle = (currentEffect) => {
   return (values, handle) => {
-    effectValueInput.value = values[handle];
-    imageUploadPreview.style.filter = `${currentEffect.filter}(${effectValueInput.value}${currentEffect.unit})`;
+    effectValueInput.value = Math.round(values[handle]/ currentEffect.max * 100);
+    imageUploadPreview.style.filter = `${currentEffect.filter}(${values[handle]}${currentEffect.unit})`;
   }
 };
 
