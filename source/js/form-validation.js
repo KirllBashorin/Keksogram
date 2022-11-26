@@ -1,4 +1,5 @@
 import { checkStringLength, checkStringSymbols } from './util.js';
+import _ from 'lodash';
 
 const Hashtags = {
   MAX_TAGS: 5,
@@ -6,14 +7,11 @@ const Hashtags = {
 };
 
 const MAX_COMMENT_LENGTH = 140;
+const DEBOUNCE_DELAY = 500;
 
 const imgUploadForm = document.querySelector('.img-upload__form');
 const hashtagsInput = imgUploadForm.querySelector('.text__hashtags');
 const commentInput = imgUploadForm.querySelector('.text__description');
-
-const stringToArray = (string) => {
-  return string.split(' ');
-}
 
 const addInvalidClass = (input) => {
   if (input.validity.customError) {
@@ -23,9 +21,8 @@ const addInvalidClass = (input) => {
   }
 };
 
-hashtagsInput.addEventListener('input' , () => {
-  const inputString = hashtagsInput.value.toLowerCase().replace(/\s+/g, ' ').trim();
-  const hashtags = stringToArray(inputString);
+const hashtagValidation = () => {
+  const hashtags = hashtagsInput.value.toLowerCase().replace(/\s+/g, ' ').trim().split(' ');
   hashtags.forEach((hashtag) => {
     if (hashtags.length === 1 && hashtags[0].length === 0) {
       hashtagsInput.setCustomValidity('');
@@ -62,9 +59,9 @@ hashtagsInput.addEventListener('input' , () => {
     addInvalidClass(hashtagsInput);
     hashtagsInput.reportValidity();
   });
-})
+};
 
-commentInput.addEventListener('input', () => {
+const validateComment = () => {
   const commentInputValue = commentInput.value.toString();
   if (!checkStringLength(commentInputValue, MAX_COMMENT_LENGTH)) {
     commentInput.setCustomValidity(`Максимальная длина комментари - ${MAX_COMMENT_LENGTH}
@@ -74,4 +71,7 @@ commentInput.addEventListener('input', () => {
   }
   commentInput.reportValidity();
   addInvalidClass(commentInput);
-});
+};
+
+hashtagsInput.addEventListener('input', _.debounce(hashtagValidation, DEBOUNCE_DELAY));
+commentInput.addEventListener('input', validateComment);

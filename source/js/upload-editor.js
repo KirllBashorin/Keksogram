@@ -10,7 +10,7 @@ const Scale = {
 const Slider = {
   MIN: 0,
   MAX: 100,
-}
+};
 
 const effects = {
   'effect-chrome': {filter: 'grayscale', min: 0, max: 1, step: 0.1, unit: ''},
