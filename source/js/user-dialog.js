@@ -14,7 +14,7 @@ const uploadModal = body.querySelector('.img-upload__overlay');
 const imageUploadForm = body.querySelector('.img-upload__form');
 const uploadClose = uploadModal.querySelector('.img-upload__cancel');
 const effectsList = uploadModal.querySelector('.effects__list');
-const effectSlider = uploadModal.querySelector('.img-upload__effect-level');
+const effectLevel = uploadModal.querySelector('.img-upload__effect-level');
 const scaleControlsContainer = uploadModal.querySelector('.img-upload__scale');
 const uploadIinput = body.querySelector('.img-upload__input');
 const commentLoader = bigPicture.querySelector('.social__comments-loader');
@@ -47,7 +47,7 @@ const onBigPictureEscapeKeyDown = (evt) => {
 
 const openUploadModal = () => {
   showUploadedFile();
-  effectSlider.classList.add('hidden');
+  effectLevel.classList.add('hidden');
   uploadModal.classList.remove('hidden');
   body.classList.add('modal-open');
   uploadIinput.removeEventListener('change', openUploadModal);
@@ -88,7 +88,7 @@ const onUploadOverlayEscapeDown = (evt) => {
 
 uploadIinput.addEventListener('change', openUploadModal);
 
-// Окно ошибки
+// Алерт загрузки фото
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');

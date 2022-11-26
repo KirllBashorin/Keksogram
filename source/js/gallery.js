@@ -1,4 +1,4 @@
-/* global _:readonly */
+import _ from 'lodash';
 
 import { request } from './api.js';
 import { renderPicturesPreview } from './previews.js';
