@@ -15,6 +15,7 @@
     "css-loader": "6.7.2",
     "eslint": "7.18.0",
     "eslint-config-htmlacademy": "2.0.0",
+    "gh-pages": "4.0.0",
     "mini-css-extract-plugin": "2.7.0",
     "style-loader": "3.3.1",
     "webpack": "5.75.0",
@@ -24,7 +25,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "browser-sync start --server \"build/\" --no-ui --files \"source/**/*.js\"",
-    "test": "eslint source/js/"
+    "test": "eslint source/js/",
+    "deploy": "gh-pages -d build"
   },
   "engines": {
     "node": ">=12.0.0"
